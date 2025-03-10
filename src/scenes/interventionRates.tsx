@@ -1,8 +1,9 @@
 import {makeScene2D} from '@motion-canvas/2d';
-import {Rect, Txt, Line, Circle} from '@motion-canvas/2d';
+import {Rect, Txt, Line, Circle, Node} from '@motion-canvas/2d';
 import {createRef, createSignal, Signal} from '@motion-canvas/core';
 import {all, waitFor, sequence, loop} from '@motion-canvas/core';
 import {easeInOutCubic, easeOutBack, easeOutQuad, easeOutElastic} from '@motion-canvas/core';
+import {colors} from '../theme';
 
 // Define TypeScript interfaces for data
 interface InterventionData {
@@ -21,18 +22,9 @@ interface HeaderConfig {
 
 // Define a consistent color palette
 const COLORS = {
-  primary: '#4285F4',      // MLU color (blue)
-  secondary: '#DB4437',    // CLU color (red)
-  accent: '#34A853',       // Green for highlights
-  neutral: '#94a3b8',
-  background: '#1e293b',   // Dark navy background
-  text: '#ffffff',
-  textSecondary: '#e2e8f0',
-  darkAccent: '#334155',
-  lightAccent: '#475569',
-  success: '#4CAF50',
-  warning: '#FBBC05',
-  error: '#F44336',
+  ...colors,
+  mlu: colors.accent,      // Brown for MLU
+  clu: colors.primary,     // Red for CLU
 };
 
 export default makeScene2D(function* (view) {
@@ -127,7 +119,7 @@ export default makeScene2D(function* (view) {
           x={config.x}
           y={LAYOUT.headerY}
           opacity={0}
-          shadowColor={'rgba(0,0,0,0.2)'}
+          shadowColor={'rgba(112,82,82,0.15)'}
           shadowBlur={10}
           shadowOffset={[0, 2]}
         />
@@ -203,7 +195,7 @@ export default makeScene2D(function* (view) {
           <Rect
             height={LAYOUT.barHeight}
             width={LAYOUT.barBgWidth}
-            fill={`rgba(66, 133, 244, 0.2)`}
+            fill={`rgba(112,82,82,0.15)`}
             x={LAYOUT.mluX}
             y={y}
             radius={4}
@@ -214,7 +206,7 @@ export default makeScene2D(function* (view) {
           <Rect
             height={LAYOUT.barHeight}
             width={LAYOUT.barBgWidth}
-            fill={`rgba(219, 68, 55, 0.2)`}
+            fill={`rgba(204,90,90,0.15)`}
             x={LAYOUT.cluX}
             y={y}
             radius={4}
@@ -315,7 +307,7 @@ export default makeScene2D(function* (view) {
         <Rect
           width={1000 * SCALE}
           height={80 * SCALE}
-          fill={index % 2 === 0 ? 'rgba(255, 255, 255, 0.03)' : 'rgba(0, 0, 0, 0.1)'}
+          fill={index % 2 === 0 ? 'rgba(112,82,82,0.03)' : 'rgba(112,82,82,0.07)'}
           radius={5}
           y={y}
           opacity={0.8}
@@ -339,7 +331,7 @@ export default makeScene2D(function* (view) {
         <Rect
           height={LAYOUT.barHeight}
           width={LAYOUT.barBgWidth}
-          fill={`rgba(66, 133, 244, 0.2)`}
+          fill={`rgba(112,82,82,0.15)`}
           x={LAYOUT.mluX}
           y={y}
           radius={4}
@@ -350,7 +342,7 @@ export default makeScene2D(function* (view) {
         <Rect
           height={LAYOUT.barHeight}
           width={LAYOUT.barBgWidth}
-          fill={`rgba(219, 68, 55, 0.2)`}
+          fill={`rgba(204,90,90,0.15)`}
           x={LAYOUT.cluX}
           y={y}
           radius={4}
@@ -445,7 +437,7 @@ export default makeScene2D(function* (view) {
   
   // Add title and subtitle
   view.add(
-    <>
+    <Node>
       <Txt
         ref={titleRef}
         text="Intervention Rates"
@@ -467,23 +459,23 @@ export default makeScene2D(function* (view) {
         fill={COLORS.neutral}
         textAlign="center"
       />
-    </>
+    </Node>
   );
   
   // Add headers
   view.add(
-    <>
+    <Node>
       {mluHeader.background}
       {cluHeader.background}
       {mluHeader.text}
       {cluHeader.text}
-    </>
+    </Node>
   );
   
   // Add intervention bars and labels
   interventionBars.forEach(barPair => {
     view.add(
-      <>
+      <Node>
         {barPair.categoryBg}
         {barPair.category}
         {barPair.mluBarBg}
@@ -494,13 +486,13 @@ export default makeScene2D(function* (view) {
         {barPair.cluLabel}
         {barPair.diffBox && barPair.diffBox}
         {barPair.diffLabel && barPair.diffLabel}
-      </>
+      </Node>
     );
   });
   
   // Add conclusion
   view.add(
-    <>
+    <Node>
       <Rect
         ref={conclusionBoxRef}
         width={900 * SCALE}
@@ -528,7 +520,7 @@ export default makeScene2D(function* (view) {
         textAlign="center"
         width={850 * SCALE}
       />
-    </>
+    </Node>
   );
   
   // ===== ANIMATION SEQUENCE =====

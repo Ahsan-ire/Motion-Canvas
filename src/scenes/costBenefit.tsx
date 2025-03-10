@@ -4,6 +4,7 @@ import { createRef, createSignal, Signal } from '@motion-canvas/core';
 import { all, waitFor, sequence, loop } from '@motion-canvas/core';
 import { easeInOutCubic, easeOutQuad, easeOutBack, easeOutElastic } from '@motion-canvas/core';
 import { NodeProps } from '@motion-canvas/2d/lib/components';
+import { colors } from '../theme';
 
 // Define TypeScript interfaces for data structures
 interface HealthcareData {
@@ -27,8 +28,8 @@ interface BarWithLabel {
 }
 
 export default makeScene2D(function* (view) {
-  // Set background color to dark navy blue
-  view.fill('#1e293b');
+  // Set background color to light theme
+  view.fill(colors.background);
 
   // ===== CONFIGURATION =====
   
@@ -40,15 +41,15 @@ export default makeScene2D(function* (view) {
     mlu: {
       cost: 1018.47,
       benefit: 1491.22,
-      costColor: '#4285F4', // Blue
-      benefitColor: '#34A853', // Green
+      costColor: colors.primary, // Red
+      benefitColor: colors.accent, // Brown
       name: 'Midwife-Led Care'
     },
     clu: {
       cost: 1762.12,
       benefit: 123.23,
-      costColor: '#EA4335', // Red
-      benefitColor: '#FBBC05', // Yellow
+      costColor: colors.secondary, // Salmon
+      benefitColor: colors.accent, // Brown
       name: 'Consultant-Led Care'
     }
   };
@@ -59,12 +60,12 @@ export default makeScene2D(function* (view) {
   
   // Color constants
   const COLORS = {
-    text: '#FFFFFF',
-    accent: '#34A853', // Green for highlights
-    containerBg: 'rgba(255,255,255,0.05)',
-    containerBorder: 'rgba(255,255,255,0.1)',
-    shadow: 'rgba(0,0,0,0.3)',
-    comparisonBg: 'rgba(52, 168, 83, 0.2)'
+    text: colors.text, // Brown text
+    accent: colors.accent, // Brown for highlights
+    containerBg: 'rgba(112,82,82,0.05)', // Light brown background
+    containerBorder: 'rgba(112,82,82,0.1)', // Light brown border
+    shadow: 'rgba(112,82,82,0.2)', // Brown shadow
+    comparisonBg: 'rgba(112,82,82,0.1)' // Light brown comparison background
   };
   
   // Layout measurements
@@ -374,7 +375,7 @@ export default makeScene2D(function* (view) {
   
   // Add all elements to the scene in proper order
   view.add(
-    <>
+    <Node>
       {/* Title and subtitle */}
       <Txt
         ref={titleRef}
@@ -454,7 +455,7 @@ export default makeScene2D(function* (view) {
           width={860 * SCALE}
         />
       </Rect>
-    </>
+    </Node>
   );
   
   // ===== ANIMATION SEQUENCE =====

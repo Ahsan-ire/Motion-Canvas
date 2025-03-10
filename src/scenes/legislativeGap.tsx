@@ -3,22 +3,23 @@ import {Rect, Txt, Line, Circle} from '@motion-canvas/2d';
 import {createRef} from '@motion-canvas/core';
 import {all, waitFor, sequence} from '@motion-canvas/core';
 import {easeInOutCubic, easeOutBack, easeInOutQuad} from '@motion-canvas/core';
+import {colors} from '../theme';
 
 // Define a consistent color palette
-const colors = {
-  primary: '#4285F4',
-  secondary: '#DB4437',
-  accent: '#34A853',
-  neutral: '#94a3b8',
-  background: '#1e293b',
-  text: '#ffffff',
-  textSecondary: '#e2e8f0',
-  darkAccent: '#334155',
-  lightAccent: '#475569',
-  success: '#4CAF50',
-  warning: '#FFC107',
-  error: '#F44336',
-};
+// const colors = {
+//   primary: '#4285F4',
+//   secondary: '#DB4437',
+//   accent: '#34A853',
+//   neutral: '#94a3b8',
+//   background: '#1e293b',
+//   text: '#ffffff',
+//   textSecondary: '#e2e8f0',
+//   darkAccent: '#334155',
+//   lightAccent: '#475569',
+//   success: '#4CAF50',
+//   warning: '#FFC107',
+//   error: '#F44336',
+// };
 
 export default makeScene2D(function* (view) {
   // Set background color
@@ -70,11 +71,11 @@ export default makeScene2D(function* (view) {
       ref={timelineBg}
       width={1100}
       height={60}
-      fill={colors.darkAccent}
+      fill={colors.darkBackground}
       radius={30}
       y={0}
       opacity={0}
-      shadowColor={'rgba(0,0,0,0.3)'}
+      shadowColor={'rgba(112,82,82,0.2)'}
       shadowBlur={15}
       shadowOffset={[0, 3]}
     />
@@ -85,7 +86,7 @@ export default makeScene2D(function* (view) {
     <Line
       ref={timeline}
       points={[[-500, 0], [500, 0]]}
-      stroke={colors.neutral}
+      stroke={colors.accent}
       lineWidth={5}
       opacity={0}
     />
@@ -169,7 +170,7 @@ export default makeScene2D(function* (view) {
   
   // Venezuela 2007 - above timeline
   view.add(
-    <Circle ref={venDot} x={yearPos[0]} y={0} width={30} height={30} fill={colors.success} opacity={0} />
+    <Circle ref={venDot} x={yearPos[0]} y={0} width={30} height={30} fill={colors.accent} opacity={0} />
   );
   
   view.add(
@@ -177,14 +178,14 @@ export default makeScene2D(function* (view) {
       ref={venBox}
       width={220}
       height={80}
-      fill={`rgba(76, 175, 80, 0.1)`}
-      stroke={colors.success}
+      fill={`rgba(112,82,82,0.1)`}
+      stroke={colors.accent}
       lineWidth={2}
       radius={10}
       x={yearPos[0]}
       y={-100}
       opacity={0}
-      shadowColor={'rgba(0,0,0,0.2)'}
+      shadowColor={'rgba(112,82,82,0.15)'}
       shadowBlur={10}
       shadowOffset={[0, 2]}
     />
@@ -208,7 +209,7 @@ export default makeScene2D(function* (view) {
   
   // Argentina 2009 - below timeline
   view.add(
-    <Circle ref={argDot} x={yearPos[1]} y={0} width={30} height={30} fill={colors.success} opacity={0} />
+    <Circle ref={argDot} x={yearPos[1]} y={0} width={30} height={30} fill={colors.accent} opacity={0} />
   );
   
   view.add(
@@ -216,14 +217,14 @@ export default makeScene2D(function* (view) {
       ref={argBox}
       width={240}
       height={80}
-      fill={`rgba(76, 175, 80, 0.1)`}
-      stroke={colors.success}
+      fill={`rgba(112,82,82,0.1)`}
+      stroke={colors.accent}
       lineWidth={2}
       radius={10}
       x={yearPos[1]}
       y={100}
       opacity={0}
-      shadowColor={'rgba(0,0,0,0.2)'}
+      shadowColor={'rgba(112,82,82,0.15)'}
       shadowBlur={10}
       shadowOffset={[0, 2]}
     />
@@ -255,14 +256,14 @@ export default makeScene2D(function* (view) {
       ref={ireBox1}
       width={280}
       height={80}
-      fill={`rgba(255, 193, 7, 0.1)`}
+      fill={`rgba(226,137,137,0.1)`}
       stroke={colors.warning}
       lineWidth={2}
       radius={10}
       x={yearPos[2]}
       y={-100}
       opacity={0}
-      shadowColor={'rgba(0,0,0,0.2)'}
+      shadowColor={'rgba(112,82,82,0.15)'}
       shadowBlur={10}
       shadowOffset={[0, 2]}
     />
@@ -294,14 +295,14 @@ export default makeScene2D(function* (view) {
       ref={ireBox2}
       width={230}
       height={80}
-      fill={`rgba(255, 193, 7, 0.1)`}
+      fill={`rgba(226,137,137,0.1)`}
       stroke={colors.warning}
       lineWidth={2}
       radius={10}
       x={yearPos[3]}
       y={100}
       opacity={0}
-      shadowColor={'rgba(0,0,0,0.2)'}
+      shadowColor={'rgba(112,82,82,0.15)'}
       shadowBlur={10}
       shadowOffset={[0, 2]}
     />
@@ -324,7 +325,7 @@ export default makeScene2D(function* (view) {
   
   // Current gap 2025 - above timeline
   view.add(
-    <Circle ref={currentDot} x={yearPos[4]} y={0} width={30} height={30} fill={colors.error} opacity={0} />
+    <Circle ref={currentDot} x={yearPos[4]} y={0} width={30} height={30} fill={colors.primary} opacity={0} />
   );
   
   view.add(
@@ -332,14 +333,14 @@ export default makeScene2D(function* (view) {
       ref={currentBox}
       width={260}
       height={80}
-      fill={`rgba(244, 67, 54, 0.1)`}
-      stroke={colors.error}
+      fill={`rgba(204,90,90,0.1)`}
+      stroke={colors.primary}
       lineWidth={2}
       radius={10}
       x={yearPos[4]}
       y={-100}
       opacity={0}
-      shadowColor={'rgba(0,0,0,0.2)'}
+      shadowColor={'rgba(112,82,82,0.15)'}
       shadowBlur={10}
       shadowOffset={[0, 2]}
     />

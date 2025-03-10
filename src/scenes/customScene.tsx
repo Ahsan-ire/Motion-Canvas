@@ -1,19 +1,20 @@
 import {makeScene2D} from '@motion-canvas/2d';
 import {createRef, waitFor, all} from '@motion-canvas/core';
 import {Rect, Txt} from '@motion-canvas/2d';
+import {colors} from '../theme';
 
 // Define a consistent color palette
-const colors = {
-  primary: '#4285F4',
-  secondary: '#DB4437',
-  accent: '#34A853',
-  neutral: '#94a3b8',
-  background: '#1e293b',
-  text: '#ffffff',
-  textSecondary: '#e2e8f0',
-  darkAccent: '#334155',
-  lightAccent: '#475569',
-};
+// const colors = {
+//   primary: '#4285F4',
+//   secondary: '#DB4437',
+//   accent: '#34A853',
+//   neutral: '#94a3b8',
+//   background: '#1e293b',
+//   text: '#ffffff',
+//   textSecondary: '#e2e8f0',
+//   darkAccent: '#334155',
+//   lightAccent: '#475569',
+// };
 
 export default makeScene2D(function* (view) {
   // Set background color
@@ -32,11 +33,11 @@ export default makeScene2D(function* (view) {
       ref={mainBoxRef}
       width={800}
       height={250}
-      fill={colors.darkAccent}
+      fill={colors.darkBackground}
       radius={20}
       y={-120}
       opacity={0}
-      shadowColor={'rgba(0,0,0,0.4)'}
+      shadowColor={'rgba(112,82,82,0.2)'}
       shadowBlur={20}
       shadowOffset={[0, 5]}
     />
@@ -49,7 +50,7 @@ export default makeScene2D(function* (view) {
       text="POLICY BRIEF"
       fontSize={28}
       fontWeight={600}
-      fill={colors.neutral}
+      fill={colors.accent}
       y={-200}
       opacity={0}
     />
@@ -74,11 +75,11 @@ export default makeScene2D(function* (view) {
       ref={subtitleBoxRef}
       width={900}
       height={160}
-      fill={colors.lightAccent}
+      fill={colors.neutral}
       radius={15}
       y={120}
       opacity={0}
-      shadowColor={'rgba(0,0,0,0.3)'}
+      shadowColor={'rgba(112,82,82,0.15)'}
       shadowBlur={15}
       shadowOffset={[0, 3]}
     />
@@ -92,7 +93,7 @@ export default makeScene2D(function* (view) {
       That Remains Silent on the Issue of Obstetric Violence"
       fontSize={32}
       fontWeight={600}
-      fill={colors.textSecondary}
+      fill={colors.text}
       textAlign="center"
       y={120}
       width={860}
